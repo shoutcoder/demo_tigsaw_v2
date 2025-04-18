@@ -13,6 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          src="https://tigsaw.com/api/delivery/8WAF685E/common"
+          async
+        ></script>
+      </head>
       <body>{children}</body>
     </html>
   )
