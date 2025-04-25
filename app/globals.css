@@ -5,6 +5,14 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+* {
+    color: #00000082;
+}
+
+.bg-slate-200 {
+    background-color: rgb(226 232 240 / 64%);
+}
+
 
 @layer utilities {
   .text-balance {
