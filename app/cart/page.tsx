@@ -8,7 +8,7 @@ export default function CartPage() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="font-bold text-xl">
-            SkeleStore
+            Tigsaw Demo Store
           </Link>
         </div>
       </header>
