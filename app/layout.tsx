@@ -23,6 +23,13 @@ export default function RootLayout({
           id="scroll-handler"
           dangerouslySetInnerHTML={{
             __html: `
+              function scrollToElement(element) {
+                const elementRect = element.getBoundingClientRect();
+                const absoluteElementTop = elementRect.top + window.pageYOffset;
+                const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+                window.scrollTo({ top: middle, behavior: 'smooth' });
+              }
+
               function handleScroll() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const scrollToParam = urlParams.get('scrollTo');
@@ -46,24 +53,38 @@ export default function RootLayout({
                 }
                 
                 if (scrollSelector) {
-                  setTimeout(() => {
+                  let attempts = 0;
+                  const maxAttempts = 50; // 5 seconds maximum (50 * 100ms)
+                  
+                  const findAndScroll = () => {
                     try {
                       const element = document.querySelector(scrollSelector);
                       if (element) {
-                        const elementRect = element.getBoundingClientRect();
-                        const absoluteElementTop = elementRect.top + window.pageYOffset;
-                        const middle = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
-                        window.scrollTo({ top: middle, behavior: 'smooth' });
+                        scrollToElement(element);
+                        return true;
                       }
                     } catch (error) {
-                      console.warn('Invalid selector or element not found:', scrollSelector);
+                      console.warn('Invalid selector:', scrollSelector);
+                      return true; // Stop trying if selector is invalid
                     }
-                  }, 100);
+                    
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                      setTimeout(findAndScroll, 100);
+                    }
+                    return false;
+                  };
+                  
+                  findAndScroll();
                 }
               }
               
               // Run on initial page load
-              document.addEventListener('DOMContentLoaded', handleScroll);
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', handleScroll);
+              } else {
+                handleScroll();
+              }
               
               // Also handle client-side navigation for Next.js
               if (typeof window !== 'undefined') {
