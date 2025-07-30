@@ -15,10 +15,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          src="https://tigsaw.com/api/delivery/8WAF685E/common"
-          async
-        />
+      <!-- Tigsaw Script -->
+      <script id="tigsaw-script" tigsaw-id="8WAF685E">
+      (function(t,i,g,s,a,w){
+        i=t.currentScript.getAttribute("tigsaw-id");
+        (w||window).tigsawContainerId=i;
+        g=t.createElement('script');
+        g.src='https://static.tigsaw.com/delivery/smartscript.js';
+        g.defer=true;
+        t.head.appendChild(g);
+      })(document,typeof window!=='undefined'?window:this);
+      </script>
+      <!-- End Tigsaw Script -->
         <Script
           id="scroll-handler"
           dangerouslySetInnerHTML={{
