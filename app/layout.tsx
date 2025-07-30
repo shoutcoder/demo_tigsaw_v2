@@ -15,7 +15,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <!-- Tigsaw Script -->
       <script id="tigsaw-script" tigsaw-id="8WAF685E">
       (function(t,i,g,s,a,w){
         i=t.currentScript.getAttribute("tigsaw-id");
@@ -26,7 +25,6 @@ export default function RootLayout({
         t.head.appendChild(g);
       })(document,typeof window!=='undefined'?window:this);
       </script>
-      <!-- End Tigsaw Script -->
         <Script
           id="scroll-handler"
           dangerouslySetInnerHTML={{
