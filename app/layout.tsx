@@ -15,8 +15,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <script id="tigsaw-script" tigsaw-id="8WAF685E">
-      (function(t,i,g,s,a,w){
+         <Script
+          id="tigsaw-script" 
+          tigsaw-id="8WAF685E"
+          dangerouslySetInnerHTML={{
+            __html: `
+               (function(t,i,g,s,a,w){
         i=t.currentScript.getAttribute("tigsaw-id");
         (w||window).tigsawContainerId=i;
         g=t.createElement('script');
@@ -24,7 +28,9 @@ export default function RootLayout({
         g.defer=true;
         t.head.appendChild(g);
       })(document,typeof window!=='undefined'?window:this);
-      </script>
+            `
+          }}
+        />
         <Script
           id="scroll-handler"
           dangerouslySetInnerHTML={{
